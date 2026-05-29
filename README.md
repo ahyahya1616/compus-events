@@ -10,19 +10,19 @@ Voici les différentes interfaces de l'application :
 
 | **Authentification** | **Catalogue Étudiant** | **Détails Événement** |
 |:---:|:---:|:---:|
-| ![Login](assets/screenshots/1-login.png) | ![Events](assets/screenshots/2-student-events.png) | ![Detail](assets/screenshots/3-event-detail.png) |
+| <img src="assets/screenshots/1-login.png" width="250" /> | <img src="assets/screenshots/2-student-events.png" width="250" /> | <img src="assets/screenshots/3-event-detail.png" width="250" /> |
 
 | **Mes Favoris** | **Mes Inscriptions** | **Assistant IA** |
 |:---:|:---:|:---:|
-| ![Favorites](assets/screenshots/favoris.png) | ![Registrations](assets/screenshots/inscriptions.png) | ![Assistant](assets/screenshots/4-ai-assistant.png) |
+| <img src="assets/screenshots/favoris.png" width="250" /> | <img src="assets/screenshots/inscriptions.png" width="250" /> | <img src="assets/screenshots/4-ai-assistant.png" width="250" /> |
 
 | **Recommandations** | **Recherche Sémantique** | **Planning (1/2)** |
 |:---:|:---:|:---:|
-| ![Recs](assets/screenshots/5-ai-recommendations.png) | ![Search](assets/screenshots/6-ai-search.png) | ![Planning 1](assets/screenshots/7a-ai-planning.png) |
+| <img src="assets/screenshots/5-ai-recommendations.png" width="250" /> | <img src="assets/screenshots/6-ai-search.png" width="250" /> | <img src="assets/screenshots/7a-ai-planning.png" width="250" /> |
 
 | **Planning (2/2)** | **Dashboard Admin** | **Gestion d'Événement** |
 |:---:|:---:|:---:|
-| ![Planning 2](assets/screenshots/7b-ai-planning.png) | ![Admin List](assets/screenshots/8-admin-events.png) | ![Admin Form](assets/screenshots/9-admin-form.png) |
+| <img src="assets/screenshots/7b-ai-planning.png" width="250" /> | <img src="assets/screenshots/8-admin-events.png" width="250" /> | <img src="assets/screenshots/9-admin-form.png" width="250" /> |
 
 ---
 
