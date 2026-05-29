@@ -1,12 +1,23 @@
 {
   "name": "campus-events",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "dependencies": {
+    "date-fns": "^4.3.0",
     "expo": "~56.0.6",
+    "expo-constants": "~56.0.16",
+    "expo-font": "~56.0.5",
+    "expo-linking": "~56.0.12",
+    "expo-router": "~56.2.7",
+    "expo-secure-store": "~56.0.4",
+    "expo-sqlite": "~56.0.4",
     "expo-status-bar": "~56.0.4",
+    "expo-system-ui": "~56.0.5",
+    "lucide-react-native": "^1.17.0",
     "react": "19.2.3",
-    "react-native": "0.85.3"
+    "react-native": "0.85.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "4.25.2"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
