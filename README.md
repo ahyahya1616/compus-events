@@ -14,7 +14,7 @@ Voici les différentes interfaces de l'application :
 
 | **Mes Favoris** | **Mes Inscriptions** | **Assistant IA** |
 |:---:|:---:|:---:|
-| ![Favorites](./assets/screenshots/10-student-favorites.png) | ![Registrations](./assets/screenshots/11-student-registrations.png) | ![Assistant](./assets/screenshots/4-ai-assistant.png) |
+| ![Favorites](./assets/screenshots/favoris.png) | ![Registrations](./assets/screenshots/inscriptions.png) | ![Assistant](./assets/screenshots/4-ai-assistant.png) |
 
 | **Recommandations** | **Recherche Sémantique** | **Planning (1/2)** |
 |:---:|:---:|:---:|
