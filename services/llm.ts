@@ -1,6 +1,7 @@
 import { llmResultsDb } from '../database/llmResults';
 
 const GROQ_API_KEY = process.env.EXPO_PUBLIC_GROQ_API_KEY;
+const GROQ_MODEL = 'openai/gpt-oss-120b';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 export type LLMTask = 'search' | 'recommendation' | 'planning' | 'qa';
@@ -36,7 +37,7 @@ export const llmService = {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-specdec',
+          model: GROQ_MODEL,
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt }

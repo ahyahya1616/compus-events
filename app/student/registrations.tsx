@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native
 import { useFocusEffect, useRouter } from 'expo-router';
 import { registrationsDb } from '../../database/registrations';
 import { useAuth } from '../../context/AuthContext';
-import { Calendar, MapPin, ChevronRight, CheckCircle } from 'lucide-react-native';
+import { Ticket, MapPin, ChevronRight, CheckCircle } from 'lucide-react-native';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
@@ -37,7 +37,7 @@ export default function RegistrationsScreen() {
         </View>
         <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
         <View style={styles.infoRow}>
-          <Calendar size={14} color="#94a3b8" />
+          <Ticket size={14} color="#6366f1" />
           <Text style={styles.infoText}>
             {format(new Date(item.startDateTime), 'PPPPp', { locale: fr })}
           </Text>

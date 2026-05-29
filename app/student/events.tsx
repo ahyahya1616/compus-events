@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { eventsDb, Event } from '../../database/events';
-import { Search, Filter, Calendar, MapPin, Clock } from 'lucide-react-native';
+import { Search, Filter, Ticket, MapPin, Clock } from 'lucide-react-native';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 

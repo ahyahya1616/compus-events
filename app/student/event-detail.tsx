@@ -6,7 +6,7 @@ import { registrationsDb } from '../../database/registrations';
 import { favoritesDb } from '../../database/favorites';
 import { useAuth } from '../../context/AuthContext';
 import { 
-  Calendar, 
+  Ticket, 
   MapPin, 
   User, 
   Users, 
@@ -121,7 +121,7 @@ export default function EventDetailScreen() {
         <View style={styles.mainInfo}>
           <View style={styles.infoRow}>
             <View style={styles.iconContainer}>
-              <Calendar size={20} color="#6366f1" />
+              <Ticket size={20} color="#6366f1" />
             </View>
             <View>
               <Text style={styles.infoLabel}>Date</Text>
@@ -201,7 +201,7 @@ export default function EventDetailScreen() {
           style={[
             styles.registerButton, 
             isRegistered && styles.registeredButton,
-            (event.capacity && event.registeredCount >= event.capacity && !isRegistered) && styles.disabledButton
+            (!!event.capacity && event.registeredCount >= event.capacity && !isRegistered) && styles.disabledButton
           ]}
           onPress={handleRegister}
           disabled={event.capacity !== undefined && event.registeredCount >= event.capacity && !isRegistered}
@@ -238,9 +238,14 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   iconButton: {
-    padding: 8,
-    borderRadius: 12,
-    backgroundColor: '#f8fafc',
+    padding: 12,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   scrollContent: {
     padding: 24,
@@ -335,8 +340,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     padding: 24,
+    paddingBottom: 40, // Garde le bouton au dessus de la barre système
     borderTopWidth: 1,
     borderTopColor: '#f1f5f9',
+    backgroundColor: '#fff',
   },
   registerButton: {
     backgroundColor: '#6366f1',

@@ -4,7 +4,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { favoritesDb } from '../../database/favorites';
 import { useAuth } from '../../context/AuthContext';
 import { Event } from '../../database/events';
-import { Heart, Calendar, MapPin, ChevronRight } from 'lucide-react-native';
+import { Heart, Ticket, MapPin, ChevronRight } from 'lucide-react-native';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
@@ -35,7 +35,7 @@ export default function FavoritesScreen() {
         <View style={styles.textContainer}>
           <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
           <View style={styles.infoRow}>
-            <Calendar size={14} color="#94a3b8" />
+            <Ticket size={14} color="#6366f1" />
             <Text style={styles.infoText}>
               {format(new Date(item.startDateTime), 'PP', { locale: fr })}
             </Text>

@@ -21,7 +21,7 @@ import {
   Sparkles, 
   Search, 
   Target, 
-  Calendar, 
+  Ticket, 
   MessageSquare,
   Send,
   AlertCircle,
@@ -42,7 +42,7 @@ export default function AssistantScreen() {
   const TASKS = [
     { id: 'search', label: 'Recherche NL', icon: Search, desc: 'Trouvez par sens (ex: "un atelier IA ce weekend")' },
     { id: 'recommendation', label: 'Recommandations', icon: Target, desc: 'Basé sur vos intérêts passés' },
-    { id: 'planning', label: 'Planning', icon: Calendar, desc: 'Organisez votre semaine selon vos cours' },
+    { id: 'planning', label: 'Planning', icon: Ticket, desc: 'Organisez votre semaine selon vos cours' },
     { id: 'qa', label: 'Questions/Réponses', icon: MessageSquare, desc: 'Posez des questions sur le campus' },
   ];
 
