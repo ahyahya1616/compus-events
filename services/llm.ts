@@ -1,8 +1,19 @@
 import { llmResultsDb } from '../database/llmResults';
 
 const GROQ_API_KEY = process.env.EXPO_PUBLIC_GROQ_API_KEY;
-const GROQ_MODEL = 'openai/gpt-oss-120b';
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+const cleanJSON = (text: string): string => {
+  try {
+    // Attempt to extract JSON from markdown code blocks
+    const match = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/```\s*([\s\S]*?)\s*```/);
+    const jsonPart = match ? match[1] : text;
+    return jsonPart.trim();
+  } catch (e) {
+    return text.trim();
+  }
+};
 
 export type LLMTask = 'search' | 'recommendation' | 'planning' | 'qa';
 
@@ -18,8 +29,20 @@ export const llmService = {
     // Check cache first
     const cached = llmResultsDb.getCached(userId, type, inputText);
     if (cached) {
-      console.log('Using cached LLM result');
-      return cached.outputText;
+      // Si c'est une tâche JSON, on vérifie que le cache est valide
+      if (type === 'search' || type === 'recommendation') {
+        try {
+          JSON.parse(cached.outputText);
+          console.log('Using valid cached LLM result');
+          return cached.outputText;
+        } catch (e) {
+          console.warn('Cache invalide détecté, appel API forcé');
+          // On continue pour faire un nouvel appel API
+        }
+      } else {
+        console.log('Using cached LLM result');
+        return cached.outputText;
+      }
     }
 
     if (!GROQ_API_KEY || GROQ_API_KEY === 'your_groq_api_key_here') {
@@ -43,7 +66,8 @@ export const llmService = {
             { role: 'user', content: userPrompt }
           ],
           temperature: 0.1,
-          max_tokens: 1000,
+          max_tokens: 2048,
+          response_format: { type: "json_object" }
         }),
       });
 
@@ -53,7 +77,12 @@ export const llmService = {
       }
 
       const data = await response.json();
-      const outputText = data.choices[0].message.content;
+      const rawOutput = data.choices?.[0]?.message?.content || '';
+      const outputText = cleanJSON(rawOutput);
+
+      if (!outputText) {
+        throw new Error('L\'IA a renvoyé une réponse vide.');
+      }
 
       // Save to cache
       llmResultsDb.save({
@@ -84,7 +113,8 @@ function getSystemPrompt(type: LLMTask): string {
       return `Tu es un conseiller d'orientation universitaire. 
       Analyse l'historique de l'étudiant (favoris et inscriptions) et suggère exactement 3 événements à venir issus du catalogue qu'il n'a pas encore consultés.
       Justifie chaque choix par rapport à ses centres d'intérêt passés.
-      Réponds en format JSON structuré: { "recommendations": [ { "id": "uuid", "reason": "pourquoi ce choix" } ] }. 
+      Réponds en format JSON structuré: { "recommendations": [ { "id": "uuid", "reason": "courte justification" } ] }. 
+      Sois concis, maximum 200 caractères par justification.
       Réponds uniquement en JSON.`;
 
     case 'planning':

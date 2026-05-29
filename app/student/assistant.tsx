@@ -68,7 +68,10 @@ export default function AssistantScreen() {
         case 'recommendation':
           const favs = favoritesDb.getUserFavorites(user.email);
           const regs = registrationsDb.getUserRegistrations(user.email);
-          const upcoming = allEvents.filter(e => new Date(e.startDateTime) > new Date());
+          const upcoming = allEvents
+            .filter(e => new Date(e.startDateTime) > new Date())
+            .sort((a, b) => new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime())
+            .slice(0, 20); // Limiter à 20 événements pour éviter de saturer le contexte
           contextData = {
             history: [...favs, ...regs].map(e => ({ title: e.title, category: e.category })),
             catalog: upcoming.map(e => ({ id: e.id, title: e.title, description: e.description, category: e.category }))
@@ -97,11 +100,17 @@ export default function AssistantScreen() {
       });
 
       if (activeTask === 'search' || activeTask === 'recommendation') {
-        setResult(JSON.parse(output));
+        try {
+          setResult(JSON.parse(output));
+        } catch (parseError) {
+          console.error('Failed to parse LLM output:', output);
+          setError('Erreur de format de réponse de l\'IA. Veuillez réessayer.');
+        }
       } else {
         setResult(output);
       }
     } catch (err: any) {
+      console.error('handleRunTask Error:', err);
       setError(err.message || 'Une erreur est survenue');
     } finally {
       setLoading(false);
