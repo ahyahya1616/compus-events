@@ -67,7 +67,7 @@ export const llmService = {
           ],
           temperature: 0.1,
           max_tokens: 2048,
-          response_format: { type: "json_object" }
+          ...( (type === 'search' || type === 'recommendation') ? { response_format: { type: "json_object" } } : {} )
         }),
       });
 
